@@ -19,7 +19,7 @@ class CostumeUserManager(BaseUserManager):
     def create_superuser(self, email, password, **others):
         """ create the user but with is_superuser and is_staff set to True """
 
-        others.setdefault('is_staff', False)
+        others.setdefault('is_staff', True)
         others.setdefault('is_superuser', True)
         others.setdefault('is_active', True)
 
