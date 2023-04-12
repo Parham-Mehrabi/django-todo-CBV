@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+<h1>
+    {{ object.title }}
+</h1>
+<p class="text fw-bold">
+    {{ object.context }}
+    
+</p>
+<h6>
+    Done: {{ object.is_complete }}
+</h6>
+<small>
+{{ object.author }}-{{ object.created }}
+</small>
+<hr>
+<div class="btn-group">
+    <a class= "btn btn-warning btn-sm" href="{% url 'todo:edit' task.id %}">edit</a>
+    <a class= "btn btn-danger btn-sm" href="{% url 'todo:delete' task.id %}">delete</a>
+</div>
+<a href="{% url 'todo:todo-list' %}" class="btn btn-secondary btn-sm m-2 ">back to tasks</a>
+{% endblock %}

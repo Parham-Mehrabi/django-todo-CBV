@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        {% for key,msg in form.errors.items %}
+        {{ msg }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div>
+        <h1>title:
+        </h1>
+        <small class="text text-danger">
+            {{ form.title.errors }}
+        </small>
+            <h1>
+                {{ form.title }}
+
+            </h1>
+            </div>
+    <div>
+        <h6>context:</h6>
+        {{ form.context }}
+    </div>
+    <div class="m-1 p-1">
+        <h4>is complete:  {{form.is_complete}}</h4>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-lg btn-success">Submit</button>
+    </div>
+</form>
+{% endblock %}
