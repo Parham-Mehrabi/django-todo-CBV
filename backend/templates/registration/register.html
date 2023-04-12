@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{%  block content %}
+<form class="form w-50" method="post">
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        {% for key, error in form.errors.items %}
+            {{ key }} : {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}       
+        {% csrf_token %}
+        <div class="m-3 p-2">
+           <label for="id_email">
+               {{ form.email.label }} : 
+           </label>
+            {{ form.email }}
+            <small>{{ form.email.help_text }}</small>
+            <small class="text text-danger">{{ form.email.errors }}</small>
+        </div>
+        <div class="m-3 p-2">
+            <label for="id_password1">
+                {{ form.password1.label }} : 
+            </label>
+            {{ form.password1 }}
+            <small>{{ form.password1.help_text }}</small>
+            <small class="text text-danger">{{ form.password1.errors }}</small>
+        </div>
+        <div class="m-3 p-2">
+            <label for="id_password2">
+                {{ form.password2.label }} : 
+            </label>
+            {{ form.password2 }} 
+            <small>{{ form.password2.help_text }}</small>
+            <small class="text text-danger">{{ form.password2.errors }}</small>
+
+        </div>
+    <button class="btn btn-success" type="submit">login</button>
+</form>
+{% endblock %}
