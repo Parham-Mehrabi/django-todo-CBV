@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+
+  backend:
+    user : 1000:1000
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    environment:
+      - SECRET_KEY django-insecure-#s04_bzd3_v0h7^3))%nzru%o#x-$ruv!uk+rat8n@@_+_(zf(
+    ports:
+      - '8000:8000'
+    expose:
+      - '8000'
