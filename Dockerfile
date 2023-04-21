@@ -27,4 +27,3 @@ RUN unset HTTPS_PROXY
 RUN unset ALL_PROXY
 
 # CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
-

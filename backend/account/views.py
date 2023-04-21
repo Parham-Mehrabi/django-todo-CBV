@@ -7,12 +7,12 @@ from django.urls import reverse_lazy
 
 user = get_user_model()
 
+
 class TodoLogoutView(LogoutView, LoginRequiredMixin):
     """
         Log out the user and redirect to login Page.
     """
     next_page = '/'
-
 
 
 class TodoRegisterView(CreateView):
