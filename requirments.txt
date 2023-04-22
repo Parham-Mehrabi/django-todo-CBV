@@ -1,2 +1,11 @@
+
+# general
 Django==4.2
 djangorestframework
+django-filter
+
+# deploy
+
+
+# development
+drf-yasg[validation]

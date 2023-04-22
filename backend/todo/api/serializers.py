@@ -12,16 +12,15 @@ class CostumeUserSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     # author = CostumeUserSerializer()
-    # note:2
-    # note:3
+    # note:2 & 3
     task_absolute_url = serializers.SerializerMethodField(method_name='get_task_absolute_url', read_only=True)
     task_relative_url = serializers.URLField(source='get_absolute_api_url', read_only=True)
     # note:1
 
     class Meta:
-        read_only_fields = ['author']
         model = Task
         fields = ('author', 'task_absolute_url', 'task_relative_url', 'title', 'context', 'is_complete', 'created')
+        read_only_fields = ['author']
 
     def create(self, validated_data):
         validated_data['author'] = self.context.get('request').user
@@ -73,5 +72,14 @@ NOTES:
     #2:
         since the serializer itself returns a serializer object we should specify that we need its data here in the field
         so we add .data in the end
+        
+        
+5:
+    in Meta class we could use 'extra_kwargs' which is a dictionary of extra fields like:
+            extra_kwargs = {
+            'security_question': {'write_only': True},
+            'security_question_answer': {'write_only': True},
+            'password': {'write_only': True}
+        }
      
 """
