@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CostumeUserManager(BaseUserManager):
-    """ costum user manager where email is the unique identifier """
+    """ costume user manager where email is the unique identifier """
 
     def create_user(self, email, password, **other):
         """ create user with an email and password and extra data """
@@ -35,19 +35,17 @@ class CostumeUserManager(BaseUserManager):
         self.create_user(email=email, password=password, **others)
 
 
-
 class CostumUser(AbstractBaseUser, PermissionsMixin):
-    """ costum user model for our app """
+    """ costume user model for our app """
 
     email = models.EmailField(max_length=255, unique=True )
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
-    # is_verified = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
 
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
