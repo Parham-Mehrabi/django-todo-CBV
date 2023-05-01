@@ -4,8 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView
 )
-from rest_framework.authtoken.views import ObtainAuthToken
-from .views import RegisterApiView
+from .views import RegisterApiView, TokenLoginApi, TokenLogoutApi
 
 
 urlpatterns = [
@@ -13,6 +12,9 @@ urlpatterns = [
     # Register
     path('register/', RegisterApiView.as_view(), name='register_api'),
 
+    # TOKEN:
+    path('token/login/', TokenLoginApi.as_view(), name='token_login'),
+    path('token/logout/', TokenLogoutApi.as_view(), name='token_logout'),
 
 
     # JWT:
@@ -20,6 +22,4 @@ urlpatterns = [
     path('jwt/token/refresh/', TokenRefreshView.as_view(), name='jwt_refresh'),
     path('jwt/token/verify/', TokenVerifyView.as_view(), name='jwt_verify'),
 
-    # TOKEN:
-    path('token/obtain', ObtainAuthToken.as_view(), name='token_obtain'),
 ]
