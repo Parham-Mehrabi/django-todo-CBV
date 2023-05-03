@@ -4,6 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate
+from todo.models import Task
 User = get_user_model()
 
 
@@ -51,7 +52,7 @@ class CostumeAuthTokenSerializer(serializers.Serializer):
     )
 
     def validate(self, attrs):
-        username = attrs.get(' ')
+        username = attrs.get('email')
         password = attrs.get('password')
 
         if username and password:
@@ -89,3 +90,14 @@ class ChangePasswordSerializer(serializers.Serializer):
             raise serializers.ValidationError({'new_password': list(e.messages)})
         return super().validate(attrs)
 
+
+class ProfileSerializer(serializers.ModelSerializer):
+    tasks_count = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('email', 'tasks_count', 'is_staff', 'is_active', 'is_superuser', 'is_verified', 'created_date')
+        read_only_fields = ['tasks_count', 'is_staff', 'is_active', 'is_superuser', 'is_verified']
+
+    def get_tasks_count(self, obj):     # noqa
+        return Task.objects.filter(author=obj).count()
