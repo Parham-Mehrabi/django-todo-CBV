@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView
 )
-from .views import RegisterApiView, TokenLoginApi, TokenLogoutApi
+from .views import RegisterApiView, TokenLoginApi, TokenLogoutApi, ChangePasswordApiView, ProfileApiView
 
 
 urlpatterns = [
@@ -12,14 +12,24 @@ urlpatterns = [
     # Register
     path('register/', RegisterApiView.as_view(), name='register_api'),
 
-    # TOKEN:
+    # Login TOKEN:
     path('token/login/', TokenLoginApi.as_view(), name='token_login'),
     path('token/logout/', TokenLogoutApi.as_view(), name='token_logout'),
 
 
-    # JWT:
-    path('jwt/token/', TokenObtainPairView.as_view(), name='jwt_obtain_pair'),
-    path('jwt/token/refresh/', TokenRefreshView.as_view(), name='jwt_refresh'),
-    path('jwt/token/verify/', TokenVerifyView.as_view(), name='jwt_verify'),
+    # Login JWT:
+    path('jwt/create/', TokenObtainPairView.as_view(), name='jwt_obtain_pair'),
+    path('jwt/refresh/', TokenRefreshView.as_view(), name='jwt_refresh'),
+    path('jwt/verify/', TokenVerifyView.as_view(), name='jwt_verify'),
+
+
+    # change password
+    path('change-password/', ChangePasswordApiView.as_view(), name='change_password'),
+
+    # reset password
+
+
+    # profile
+    path('profile/', ProfileApiView.as_view(), name='profile')
 
 ]

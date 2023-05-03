@@ -4,7 +4,6 @@ from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate
-
 User = get_user_model()
 
 
@@ -72,4 +71,21 @@ class CostumeAuthTokenSerializer(serializers.Serializer):
         attrs['user'] = user
         return attrs
 
+
+class ChangePasswordSerializer(serializers.Serializer):
+
+    old_password = serializers.CharField(required=True, max_length=128)
+    new_password = serializers.CharField(required=True, max_length=128)
+    new_password1 = serializers.CharField(required=True, max_length=128)
+
+    def validate(self, attrs):
+        if attrs.get('new_password') != attrs.get('new_password1'):
+            raise serializers.ValidationError({
+                'detail': 'passwords doesnt match'
+            })
+        try:
+            validate_password(attrs.get('new_password'))
+        except exceptions.ValidationError as e:
+            raise serializers.ValidationError({'new_password': list(e.messages)})
+        return super().validate(attrs)
 
