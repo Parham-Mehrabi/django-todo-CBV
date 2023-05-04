@@ -4,7 +4,9 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView
 )
-from ..views import RegisterApiView, TokenLoginApi, TokenLogoutApi, ChangePasswordApiView
+from ..views import (RegisterApiView, TokenLoginApi, TokenLogoutApi,
+                     ChangePasswordApiView, VerifyEmail, ResendVerifyEmail,
+                     ResetPasswordApi, ConfirmResetPasswordApi)
 
 
 urlpatterns = [
@@ -27,5 +29,11 @@ urlpatterns = [
     path('change-password/', ChangePasswordApiView.as_view(), name='change_password'),
 
     # reset password
+    path('reset-password/', ResetPasswordApi.as_view(), name='reset_password'),
+    path('reset-password/confirm/<str:token>', ConfirmResetPasswordApi.as_view(), name='reset_password_confirm'),
+
+    # activation
+    path('activation/confirm/<str:token>', VerifyEmail.as_view(), name='email_verification'),
+    path('activation/resend/', ResendVerifyEmail.as_view(), name='email_verification_resend'),
 
 ]
