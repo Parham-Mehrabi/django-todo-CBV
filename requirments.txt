@@ -11,3 +11,10 @@ django-mail-templated
 
 # development
 drf-yasg[validation]
+
+
+# reformat and test
+black
+flake8
+pytest
+pytest-django
