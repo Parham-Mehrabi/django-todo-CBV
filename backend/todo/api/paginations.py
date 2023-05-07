@@ -29,7 +29,7 @@ class TasksPagination(PageNumberPagination):
                 page_size = 2
                 max_page_size = 10
                 page_query_param = 'page'
-    
+
     #2:
         this key should always called results other wise pagination will break other filters and they wont work
         so we cant just say some thin like: "'data': data"

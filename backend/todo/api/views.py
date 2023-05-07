@@ -42,18 +42,18 @@ class TaskViewSet(ModelViewSet):
     #1:
         we should just mention the fields but here with a dictionary we declare how exactly we gonna filter
         for example for created we can specify a limited period of time between lt (lower than) and gt(greater than)
-        
-        
+
+
     #2:
         we could use a class and use the class in filterset_class rather the filterset_fields for example:
             class MyFilter(filters.FilterSet):
                 min_price = filters.NumberFilter(field_name="price", lookup_expr='gte')
-                max_price = filters.NumberFilter(field_name="price", lookup_expr='lte') 
+                max_price = filters.NumberFilter(field_name="price", lookup_expr='lte')
                 class Meta:
                     model = Product
                     fields = ['category', 'in_stock']
-                    
-                
+
+
             class ProductList(generics.ListAPIView):
                 queryset = Product.objects.all()
                 serializer_class = ProductSerializer

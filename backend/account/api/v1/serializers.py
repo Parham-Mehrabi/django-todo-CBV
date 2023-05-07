@@ -4,9 +4,8 @@ from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate
-from todo.models import Task
-from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.tokens import RefreshToken
+from todo.models import Task
 
 
 User = get_user_model()

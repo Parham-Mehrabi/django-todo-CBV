@@ -9,7 +9,7 @@ exclude =
     env,
     .env,
     settings.py,
-    __init__
+    __init__.py,
 
 ignore =
     E501

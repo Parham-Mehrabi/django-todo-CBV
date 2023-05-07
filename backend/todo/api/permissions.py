@@ -7,9 +7,7 @@ class IsOwnerOrSuperUser(BasePermission):
         grant permission if the user is the owner of the task or is a superuser
         """
         return bool(
-            request.user.is_authenticated
-            and obj.author == request.user
-            or request.user.is_superuser
+            request.user.is_authenticated and obj.author == request.user or request.user.is_superuser
         )
 
 

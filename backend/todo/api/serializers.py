@@ -70,13 +70,13 @@ NOTES:
 2:
     when we call a serializer on another serializer we dont have the access to the request object in called serializer,
     we should send a context that is like this: context = {'request': self.context.get('request')}
-    
-    
+
+
 3:
     except of overriding this field here directly, we do it on to_representation,
      in this case we still use the author object's id for post requests but to represent it we send the object
      to its serializer
-     
+
 4:
     #1:
         if we hypothetically need request object in the called serializer(CostumeUserSerializer in this case),
@@ -85,8 +85,8 @@ NOTES:
     #2:
         since the serializer itself returns a serializer object we should specify that we need its data here in the field
         so we add .data in the end
-        
-        
+
+
 5:
     in Meta class we could use 'extra_kwargs' which is a dictionary of extra fields like:
             extra_kwargs = {
@@ -94,5 +94,5 @@ NOTES:
             'security_question_answer': {'write_only': True},
             'password': {'write_only': True}
         }
-     
+
 """
