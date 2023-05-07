@@ -10,16 +10,18 @@ user = get_user_model()
 
 class TodoLogoutView(LogoutView, LoginRequiredMixin):
     """
-        Log out the user and redirect to login Page.
+    Log out the user and redirect to login Page.
     """
-    next_page = '/'
+
+    next_page = "/"
 
 
 class TodoRegisterView(CreateView):
     """
-        handle new users
+    handle new users
     """
-    template_name = 'registration/register.html'
+
+    template_name = "registration/register.html"
     model = user
     form_class = RegisterForm
-    success_url = reverse_lazy('todo:todo-list')
+    success_url = reverse_lazy("todo:todo-list")

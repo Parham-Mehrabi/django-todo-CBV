@@ -9,14 +9,14 @@ class TasksPagination(PageNumberPagination):
         return Response(
             # note:1
             {
-                'links': {
-                    'next': self.get_next_link(),
-                    'previous': self.get_previous_link()
+                "links": {
+                    "next": self.get_next_link(),
+                    "previous": self.get_previous_link(),
                 },
-                'tasks_for_each_page': self.page_size,
-                'total_tasks': self.page.paginator.count,
-                'total_pages': self.page.paginator.num_pages,
-                'results': data
+                "tasks_for_each_page": self.page_size,
+                "total_tasks": self.page.paginator.count,
+                "total_pages": self.page.paginator.num_pages,
+                "results": data
                 # note:2
             }
         )

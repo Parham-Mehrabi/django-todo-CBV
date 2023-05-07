@@ -8,4 +8,8 @@ exclude =
     venv,
     env,
     .env,
-    settings
+    settings.py,
+    __init__
+
+ignore =
+    E501

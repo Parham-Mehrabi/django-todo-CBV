@@ -9,11 +9,11 @@ from .paginations import TasksPagination
 
 
 class TaskFilter(FilterSet):
-    context = CharFilter(field_name="context", lookup_expr='exact')
+    context = CharFilter(field_name="context", lookup_expr="exact")
 
     class Meta:
         model = Task
-        fields = ['context']
+        fields = ["context"]
 
 
 class TaskViewSet(ModelViewSet):
@@ -21,15 +21,16 @@ class TaskViewSet(ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrSuperUser, IsAuthenticated, IsVerified]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    ordering = ['id']
-    filterset_fields = {'context': ['in', 'exact'],
-                        'author__email': ['exact', 'in'],
-                        'created': ['lt', 'gt'],
-                        }
+    ordering = ["id"]
+    filterset_fields = {
+        "context": ["in", "exact"],
+        "author__email": ["exact", "in"],
+        "created": ["lt", "gt"],
+    }
     # filterset_class = TaskFilter
     # note:1&2
-    search_fields = ['title', 'context', 'author__email']
-    ordering_fields = ['is_complete', 'created']
+    search_fields = ["title", "context", "author__email"]
+    ordering_fields = ["is_complete", "created"]
     pagination_class = TasksPagination
 
     def get_queryset(self):
