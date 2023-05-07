@@ -1,7 +1,5 @@
 import pytest
 from django.urls import reverse
-from todo.tests.fixtures import (api_client, verified_user, unverified_user,            # noqa
-                                 user0, user_task, user0_task, unverified_user_task)    # noqa
 from todo.models import Task
 
 

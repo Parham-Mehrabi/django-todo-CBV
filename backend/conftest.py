@@ -48,6 +48,7 @@ def user_task(verified_user):
     user_task = Task.objects.create(author=verified_user, title='test', context='test', is_complete=False)
     return user_task
 
+
 @pytest.fixture
 def unverified_user_task(unverified_user):
     unverified_user_task = Task.objects.create(author=unverified_user, title='test', context='test', is_complete=False)
