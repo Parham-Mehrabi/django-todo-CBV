@@ -1,16 +1,22 @@
 from django.urls import path, include
-from .views import TodoListView, AddTaskView, DeleteTask, TaskDetailsView, UpdateTask, ToggleDone
+from .views import (
+    TodoListView,
+    AddTaskView,
+    DeleteTask,
+    TaskDetailsView,
+    UpdateTask,
+    ToggleDone,
+)
 
-app_name = 'todo'
+app_name = "todo"
 
 urlpatterns = [
-    path('', TodoListView.as_view(), name='todo-list'),
-    path('add/', AddTaskView.as_view(), name='add-task'),
-    path('delete/<int:pk>', DeleteTask.as_view(), name='delete'),
-    path('details/<int:pk>', TaskDetailsView.as_view(), name='details'),
-    path('update/<int:pk>', UpdateTask.as_view(), name='edit'),
-    path('toggle/<int:pk>', ToggleDone.as_view(), name='toggle'),
-
+    path("", TodoListView.as_view(), name="todo-list"),
+    path("add/", AddTaskView.as_view(), name="add-task"),
+    path("delete/<int:pk>", DeleteTask.as_view(), name="delete"),
+    path("details/<int:pk>", TaskDetailsView.as_view(), name="details"),
+    path("update/<int:pk>", UpdateTask.as_view(), name="edit"),
+    path("toggle/<int:pk>", ToggleDone.as_view(), name="toggle"),
     # API path:
-    path('api/v1/', include('todo.api.urls', namespace='api-v1'), name='api-v1'),
+    path("api/v1/", include("todo.api.urls", namespace="api-v1"), name="api-v1"),
 ]
