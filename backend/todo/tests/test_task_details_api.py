@@ -118,3 +118,6 @@ class TestTaskDetailsDeletePutPatchApi:
         api_client.force_authenticate(unverified_user)
         response = api_client.delete(url)
         assert response.status_code == 403
+
+    def test_fail(self):
+        assert False
