@@ -11,7 +11,7 @@ django-mail-templated
 
 # development
 drf-yasg[validation]
-
+Faker==18.6.2
 
 # reformat and test
 black
