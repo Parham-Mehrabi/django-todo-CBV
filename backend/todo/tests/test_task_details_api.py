@@ -119,5 +119,5 @@ class TestTaskDetailsDeletePutPatchApi:
         response = api_client.delete(url)
         assert response.status_code == 403
 
-    def test_fail(self):
+    def test_fail2(self):
         assert False
