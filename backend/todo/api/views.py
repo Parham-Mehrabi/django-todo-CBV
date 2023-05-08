@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from ..models import Task
 from .serializers import TaskSerializer
-from .permissions import IsOwnerOrSuperUser
+from .permissions import IsOwnerOrSuperUser, IsVerified
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet, CharFilter
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -19,7 +19,7 @@ class TaskFilter(FilterSet):
 class TaskViewSet(ModelViewSet):
     model = Task
     serializer_class = TaskSerializer
-    permission_classes = [IsOwnerOrSuperUser, IsAuthenticated]
+    permission_classes = [IsOwnerOrSuperUser, IsAuthenticated, IsVerified]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     ordering = ['id']
     filterset_fields = {'context': ['in', 'exact'],

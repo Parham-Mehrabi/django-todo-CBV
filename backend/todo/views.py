@@ -41,8 +41,6 @@ class AddTaskView(LoginRequiredMixin, CreateView):
     
     def get(self, *args, **kwargs):
         return redirect('todo:todo-list')
-    
-
 
 
 class DeleteTask(UserPassesTestMixin, DeleteView):
@@ -59,7 +57,6 @@ class DeleteTask(UserPassesTestMixin, DeleteView):
     #TODO SECURITY: change error from 403 to 404 to avoid revealing number of objects in the database 
 
 
-
 class TaskDetailsView(UserPassesTestMixin, DetailView):
     """
         returns task's details
@@ -73,8 +70,7 @@ class TaskDetailsView(UserPassesTestMixin, DetailView):
     #TODO SECURITY: change error from 403 to 404 to avoid revealing number of objects in the database 
 
 
-
-class UpdateTask(UserPassesTestMixin,UpdateView):
+class UpdateTask(UserPassesTestMixin, UpdateView):
     """
         update the task's details and redirect to task's details
     """
@@ -92,7 +88,8 @@ class UpdateTask(UserPassesTestMixin,UpdateView):
 
 
 
-class ToggleDone(UserPassesTestMixin,UpdateView):
+
+class ToggleDone(UserPassesTestMixin, UpdateView):
     """
         toggle status
     """

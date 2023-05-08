@@ -3,14 +3,28 @@ version: '3.9'
 services:
 
   backend:
-    user : 1000:1000
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/app
-    environment:
-      - SECRET_KEY django-insecure-#s04_bzd3_v0h7^3))%nzru%o#x-$ruv!uk+rat8n@@_+_(zf(
+    env_file:
+      - ./env_variables.env
     ports:
       - '8000:8000'
     expose:
       - '8000'
+
+  smtp4dev:
+    image: rnwood/smtp4dev:v3
+    restart: always
+    ports:
+      - '5000:80'
+      - '25:25'
+      - '143:143'
+    volumes:
+        - smtp4dev-data:/smtp4dev
+    environment:
+      - ServerOptions__HostName=smtp4dev
+
+volumes:
+  smtp4dev-data:

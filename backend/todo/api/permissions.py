@@ -11,3 +11,9 @@ class IsOwnerOrSuperUser(BasePermission):
                     obj.author == request.user or
                     request.user.is_superuser
                     )
+
+
+class IsVerified(BasePermission):
+
+    def has_permission(self, request, view):
+        return bool(request.user.is_authenticated and request.user.is_verified)

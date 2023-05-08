@@ -7,26 +7,26 @@ user = get_user_model()
  
 class CostumeUserAdmin(UserAdmin):
     model = user
-    list_display = ('email','is_staff','is_superuser','is_active')
-    list_filter = ('email','is_staff','is_superuser','is_active')
+    list_display = ('email', 'is_staff', 'is_superuser', 'is_active', 'is_verified')
+    list_filter = ('email', 'is_staff', 'is_superuser', 'is_active')
     search_fields = ('email',)
     ordering = ('email',)
 
     fieldsets = (
-        (
-        'AUTH',{
-            'fields': ('email','password')
+        ('AUTH', {
+            'fields': ('email', 'password')
         }),
-        ('STATUS',{ 
-            'fields': ('is_staff','is_superuser','is_active')
+        ('STATUS', {
+            'fields': ('is_staff', 'is_superuser', 'is_active', 'is_verified')
         })
     )
 
     add_fieldsets = (
-        (None,{
-            'fields':('email','password1', 'password2', 'is_staff', 'is_superuser', 'is_active')
+        (None, {
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_superuser', 'is_active')
         }),
     )
 
-admin.site.register(user,CostumeUserAdmin)
+
+admin.site.register(user, CostumeUserAdmin)
 
