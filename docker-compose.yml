@@ -14,6 +14,11 @@ services:
     expose:
       - '8000'
 
+  redis:
+    image: redis
+    ports:
+      - '6369:6379'
+
   smtp4dev:
     image: rnwood/smtp4dev:v3
     restart: always
