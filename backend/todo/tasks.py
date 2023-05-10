@@ -7,6 +7,7 @@ from todo.models import Task
 
 User = get_user_model()
 
+
 @shared_task
 def clean_done_tasks():
     Task.objects.filter(is_complete=True).delete()
@@ -15,12 +16,14 @@ def clean_done_tasks():
 
 @shared_task
 def create_random_task():
+    """ create random task for a user """
     fake = Faker()
     users = User.objects.all()
-    Task.objects.create(
+    task = Task.objects.create(
                         author=random.choice(users),
                         title=fake.paragraph(nb_sentences=1),
                         context=fake.paragraph(nb_sentences=5),
                         is_complete=random.choice([True, False])
                     )
-    return 'ok'
+    task.save()
+    return f'Task created title: {task.title}'
