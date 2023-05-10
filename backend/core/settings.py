@@ -152,3 +152,10 @@ EMAIL_PORT = 25
 # celery
 
 CELERY_BROKER_URL = 'redis://redis:6379/1'
+
+CELERY_BEAT_SCHEDULE = {
+    'my_first_beat': {
+        'task': 'todo.tasks.clean_done_tasks',
+        'schedule': 10*60
+    }
+}
