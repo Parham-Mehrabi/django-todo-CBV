@@ -4,7 +4,6 @@ import random
 from faker import Faker
 from todo.models import Task
 
-
 User = get_user_model()
 
 
@@ -20,10 +19,10 @@ def create_random_task():
     fake = Faker()
     users = User.objects.all()
     task = Task.objects.create(
-                        author=random.choice(users),
-                        title=fake.paragraph(nb_sentences=1),
-                        context=fake.paragraph(nb_sentences=5),
-                        is_complete=random.choice([True, False])
-                    )
+        author=random.choice(users),
+        title=fake.paragraph(nb_sentences=1),
+        context=fake.paragraph(nb_sentences=5),
+        is_complete=random.choice([True, False])
+    )
     task.save()
     return f'Task created title: {task.title}'
