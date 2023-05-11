@@ -11,7 +11,7 @@ class GetTodayWeather(APIView):
         get today weather info from 'https://www.weatherapi.com/'
     """
 
-    @method_decorator(cache_page(20*60, key_prefix='daily_weather'))
+    @method_decorator(cache_page(20 * 60, key_prefix='daily_weather'))
     def get(self, request, city, *args, **kwargs):
         url = f'https://api.weatherapi.com/v1/current.json?key={settings.WEATHER_API_TOKEN}&q={city}&aqi=yes'
         response = requests.get(url).json()
