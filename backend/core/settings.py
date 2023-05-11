@@ -147,3 +147,10 @@ EMAIL_HOST = "smtp4dev"
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = 25
+
+
+
+
+# Open Weather
+
+WEATHER_API_TOKEN = os.getenv('WEATHER_API_TOKEN')
