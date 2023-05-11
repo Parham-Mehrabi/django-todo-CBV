@@ -25,3 +25,4 @@ pytest-django
 celery
 redis
 django-celery-beat
+django-redis
