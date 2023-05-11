@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework.authtoken",
     "mail_templated",
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -148,7 +149,16 @@ EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = 25
 
+# celery
 
+CELERY_BROKER_URL = 'redis://redis:6379/1'
+
+CELERY_BEAT_SCHEDULE = {
+    'delete_completed_tasks': {
+        'task': 'todo.tasks.clean_done_tasks',
+        'schedule': 10 * 60
+    }
+}
 
 
 # Open Weather
