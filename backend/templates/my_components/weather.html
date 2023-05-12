@@ -27,7 +27,7 @@
         let city = document.getElementById('check_city').value
         city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
         document.getElementById('dokme').className = 'btn btn-secondary btn-sm'
-        fetch(`http://127.0.0.1:8000/weather/api/v1/today/${city}/`).then(resp => resp.json()).then(data => {
+        fetch(`http://0.0.0.0:8000/weather/api/v1/today/${city}/`).then(resp => resp.json()).then(data => {
             const {location, current} = data;
             city_response = location
             data_response = current
