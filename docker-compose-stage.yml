@@ -5,7 +5,7 @@ services:
   backend:
     container_name: django
     build: .
-    command: gunicorn core.wsgi --bind 0.0.0.0:8000
+    command: gunicorn core.wsgi --bind 0.0.0.0:8000 --access-logfile -  --error-logfile -
     volumes:
       - ./backend:/app
       - static-volume:/app/static_files
