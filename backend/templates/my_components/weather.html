@@ -27,14 +27,14 @@
         let city = document.getElementById('check_city').value
         city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
         document.getElementById('dokme').className = 'btn btn-secondary btn-sm'
-        fetch(`http://backend/weather/api/v1/today/${city}/`).then(resp => resp.json()).then(data => {
+        fetch(`http://0.0.0.0/weather/api/v1/today/${city}/`).then(resp => resp.json()).then(data => {
             const {location, current} = data;
             city_response = location
             data_response = current
             document.getElementById('air_quality').style = {'display': 'block'}
             document.getElementById('region_name').innerText = `region name: ${city_response.region}`
             document.getElementById('city_name').innerText = `city: ${city_response.name}`
-            document.getElementById('country').innerText = `country: ${city_response.name}`
+            document.getElementById('country').innerText = `country: ${city_response.country}`
             document.getElementById('weather_data').innerText = `condition : ${data_response.condition.text}`
             document.getElementById('o3').innerText = data_response.air_quality.o3
             document.getElementById('co').innerText = data_response.air_quality.co
