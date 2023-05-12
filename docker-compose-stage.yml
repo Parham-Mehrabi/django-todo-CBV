@@ -8,6 +8,8 @@ services:
     command: gunicorn core.wsgi --bind 0.0.0.0:8000
     volumes:
       - ./backend:/app
+      - static-volume:/app/static_files
+      - media-volume:/app/media
     env_file:
       - ./env_variables.env
     expose:
@@ -50,7 +52,15 @@ services:
     ports:
       - '80:80'
     restart: always
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx_configs:/etc/nginx/conf.d
+      - media-volume:/home/app/media
+      - static-volume:/home/app/static
 
 
 volumes:
-  smtp4dev-data:
+  media-volume:
+  static-volume:
+
