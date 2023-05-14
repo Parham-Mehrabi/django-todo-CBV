@@ -1,0 +1,55 @@
+<div class="d-flex w-50 justify-content-between m-2 py-2 border-bottom">
+    <label for="#check_city">check a city's weather: </label>
+    <div>
+        <input type="search" id="check_city" placeholder=" city name">
+        <input type="submit" value="check" onclick=handleCheck() id="dokme" class="btn btn-primary btn-sm">
+        <img src="" id="image" style="display: none" width="70px" height="50px">
+    </div>
+
+</div>
+<h6 id="city_name"></h6>
+<h6 id="region_name"></h6>
+<h6 id="country"></h6>
+<p id="weather_data">
+</p>
+<div id="air_quality" style="display: none">
+    <span style="font-weight: bolder">o3: </span><p id="o3" style="display: inline-block"></p> <br>
+    <span style="font-weight: bolder">co: </span><p id="co" style="display: inline-block"></p> <br>
+    <span style="font-weight: bolder">no2: </span><p id="no2" style="display: inline-block"></p> <br>
+    <span style="font-weight: bolder">so2: </span><p id="so2" style="display: inline-block"></p>
+</div>
+<hr>
+<script>
+    let city_response = {}
+    let data_response = {}
+
+    function handleCheck() {
+        let city = document.getElementById('check_city').value
+        city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+        document.getElementById('dokme').className = 'btn btn-secondary btn-sm'
+        fetch(`http://0.0.0.0/weather/api/v1/today/${city}/`).then(resp => resp.json()).then(data => {
+            const {location, current} = data;
+            city_response = location
+            data_response = current
+            document.getElementById('air_quality').style = {'display': 'block'}
+            document.getElementById('region_name').innerText = `region name: ${city_response.region}`
+            document.getElementById('city_name').innerText = `city: ${city_response.name}`
+            document.getElementById('country').innerText = `country: ${city_response.country}`
+            document.getElementById('weather_data').innerText = `condition : ${data_response.condition.text}`
+            document.getElementById('o3').innerText = data_response.air_quality.o3
+            document.getElementById('co').innerText = data_response.air_quality.co
+            document.getElementById('no2').innerText = data_response.air_quality.no2
+            document.getElementById('so2').innerText = data_response.air_quality.so2
+            document.getElementById('image').src = `https:${data_response.condition.icon}`
+            document.getElementById('image').style = {'display':'block'}
+            document.getElementById('dokme').className = 'btn btn-primary btn-sm'
+
+
+        }).catch(e =>{
+            console.log(e)
+            document.getElementById('dokme').className = 'btn btn-primary btn-sm'}
+
+        )
+    }
+
+</script>

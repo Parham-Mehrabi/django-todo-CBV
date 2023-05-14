@@ -7,6 +7,7 @@ djangorestframework-simplejwt==5.2.2
 django-mail-templated
 
 # deploy
+gunicorn
 
 
 # development
@@ -18,3 +19,11 @@ black
 flake8
 pytest
 pytest-django
+
+
+
+# background process and cache
+celery
+redis
+django-celery-beat
+django-redis

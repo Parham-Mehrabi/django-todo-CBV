@@ -134,3 +134,8 @@ dmypy.json
 ################ parham:
 
 .idea/
+/backend/static_files
+nginx_configs/mysite_access.log
+nginx_configs/mysite_error.log
+stage_variables
+

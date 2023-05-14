@@ -15,9 +15,15 @@ if SECRET_KEY == "test":
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('DEBUG') == 'FALSE':
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = ['parham-webdev.com']
 
 
 # Application definition
@@ -39,6 +45,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework.authtoken",
     "mail_templated",
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +125,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / 'static_files'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -142,8 +157,43 @@ REST_FRAMEWORK = {
 
 # email configuration
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_TLS = False
-EMAIL_HOST = "smtp4dev"
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-EMAIL_PORT = 25
+if DEBUG:
+    EMAIL_USE_TLS = False
+    EMAIL_HOST = "smtp4dev"
+    EMAIL_HOST_USER = ""
+    EMAIL_HOST_PASSWORD = ""
+    EMAIL_PORT = 25
+else:
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = "mail.parham-webdev.com"
+    EMAIL_HOST_USER = os.getenv('SMTP_USERNAME')
+    EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD')
+    EMAIL_PORT = 587
+
+
+# celery
+CELERY_BROKER_URL = 'redis://redis:6379/1'
+
+CELERY_BEAT_SCHEDULE = {
+    'delete_completed_tasks': {
+        'task': 'todo.tasks.clean_done_tasks',
+        'schedule': 10 * 60
+    }
+}
+
+
+# Open Weather
+
+WEATHER_API_TOKEN = os.getenv('WEATHER_API_TOKEN')
+
+
+# caching
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/2",
+        'OPTIONS': {
+            "CLIENT_CLASS": 'django_redis.client.DefaultClient',
+        }
+    }
+}
