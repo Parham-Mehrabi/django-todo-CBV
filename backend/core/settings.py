@@ -15,9 +15,15 @@ if SECRET_KEY == "test":
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('DEBUG') == 'FALSE':
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = ['parham-webdev.com']
 
 
 # Application definition
@@ -151,14 +157,21 @@ REST_FRAMEWORK = {
 
 # email configuration
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_TLS = False
-EMAIL_HOST = "smtp4dev"
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-EMAIL_PORT = 25
+if DEBUG:
+    EMAIL_USE_TLS = False
+    EMAIL_HOST = "smtp4dev"
+    EMAIL_HOST_USER = ""
+    EMAIL_HOST_PASSWORD = ""
+    EMAIL_PORT = 25
+else:
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = "mail.parham-webdev.com"
+    EMAIL_HOST_USER = os.getenv('SMTP_USERNAME')
+    EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD')
+    EMAIL_PORT = 587
+
 
 # celery
-
 CELERY_BROKER_URL = 'redis://redis:6379/1'
 
 CELERY_BEAT_SCHEDULE = {

@@ -12,6 +12,7 @@ services:
       - media-volume:/app/media
     env_file:
       - ./env_variables.env
+      - ./stage_variables
     expose:
       - '8000'
     depends_on:
