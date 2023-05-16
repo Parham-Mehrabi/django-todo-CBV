@@ -19,7 +19,8 @@
         <div>
             {% if user.is_authenticated %}
                 <a href="{{ logout }}"
-                   class="btn {% if request.path == logout %}active  btn-secondary{% endif %}">logout</a>
+                   class="btn {% if request.path == logout %}active  btn-secondary{% endif %}">logout({{ request.user }})</a>
+
             {% else %}
                 <a href="{{ login }}" class="btn {% if request.path == login %}active  btn-secondary{% endif %}">login</a>
                 <a href="{{ register }}"
