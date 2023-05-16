@@ -26,6 +26,9 @@ else:
     ALLOWED_HOSTS = ['parham-webdev.com']
 
 
+# CSRF
+CSRF_TRUSTED_ORIGINS = ["https://parham-webdev.com", "https://www.parham-webdev.com", 'https://*.parham-webdev.com']
+
 # Application definition
 
 INSTALLED_APPS = [
