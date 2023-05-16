@@ -13,7 +13,7 @@ class TodoLogoutView(LogoutView, LoginRequiredMixin):
     Log out the user and redirect to login Page.
     """
 
-    next_page = reverse_lazy("todo:todo-list")
+    next_page = reverse_lazy("account:login")
 
 
 class TodoRegisterView(CreateView):
