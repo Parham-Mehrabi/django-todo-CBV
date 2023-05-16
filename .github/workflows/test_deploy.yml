@@ -29,8 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: connect and execute commands
-      - uses: appleboy/ssh-action@master
-      - with:
+        uses: appleboy/ssh-action@master
+        with:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           host: ${{ secrets.HOST }}
