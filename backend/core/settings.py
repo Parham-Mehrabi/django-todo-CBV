@@ -20,10 +20,12 @@ if os.getenv('DEBUG') == 'FALSE':
 else:
     DEBUG = True
 
+DEBUG = True
+
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = ['parham-webdev.com']
+    ALLOWED_HOSTS = ['parham-webdev.com', 'www.parham-webdev.com']
 
 
 # CSRF
