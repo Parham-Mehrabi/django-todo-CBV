@@ -51,7 +51,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - '80:80'
+      - '81:80'
     restart: always
     depends_on:
       - backend
