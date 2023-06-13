@@ -25,7 +25,8 @@ DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = ['parham-webdev.com', 'www.parham-webdev.com']
+    ALLOWED_HOSTS = ['todo.parham-webdev.com']
+
 
 
 # CSRF
