@@ -23,7 +23,7 @@ else:
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = ['parham-webdev.com']
+    ALLOWED_HOSTS = ['todo.parham-webdev.com']
 
 
 # CSRF
